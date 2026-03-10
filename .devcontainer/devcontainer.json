@@ -1,0 +1,25 @@
+{
+  "name": "rollpost-web",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "remoteUser": "node",
+  "workspaceFolder": "/workspace",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode-remote.remote-containers",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss"
+      ]
+    }
+  },
+  "containerEnv": {
+    "NODE_ENV": "development",
+    "ANTHROPIC_API_KEY": "${localEnv:ANTHROPIC_API_KEY}"
+  },
+  "postCreateCommand": "curl -Ls --tlsv1.2 --proto 'https' --retry 3 https://cli.doppler.com/install.sh | sh && npm install",
+  "runArgs": ["--cap-drop=ALL", "--security-opt=no-new-privileges:true"]
+}

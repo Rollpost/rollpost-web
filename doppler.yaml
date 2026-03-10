@@ -1,0 +1,3 @@
+setup:
+  project: rollpost-web
+  config: dev
